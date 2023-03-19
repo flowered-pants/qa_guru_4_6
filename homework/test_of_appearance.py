@@ -3,7 +3,6 @@ from datetime import time
 
 def test_dark_theme():
     current_time = time(hour=4)
-    is_dark_theme = None
     if current_time.hour >= 22 or current_time.hour <= 6:
         is_dark_theme = True
     else:
@@ -31,10 +30,11 @@ def test_find_suitable_user():
         {"name": "Maria", "age": 18},
     ]
 
+    suitable_user = {}
+
     for user in users:
         if user["name"] == "Olga":
-            suitable_user = user
-    print(suitable_user)
+            suitable_user.update({'name': user['name'], 'age' : user['age']})
     assert suitable_user == {"name": "Olga", "age": 45}
 
     # TODO найдите всех пользователей младше 20 лет
@@ -71,17 +71,13 @@ def correction_name_of_readable_function(func, **kwargs):
     return description_of_function
 
 def open_browser(browser_name):
-    browser_name = "Chrome"
     actual_result = correction_name_of_readable_function(browser_name="Chrome")
 
 def go_to_companyname_homepage(page_url):
-    page_url = "https://companyname.com"
     actual_result = correction_name_of_readable_function(page_url= "https://companyname.com")
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 def find_registration_button_on_login_page(page_url, button_text):
-    page_url = "https://companyname.com/login"
-    button_text = "Register"
     actual_result = correction_name_of_readable_function(page_url = "https://companyname.com/login", button_text = "Register")
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
 
